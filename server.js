@@ -15,5 +15,9 @@ function newConnection(socket){
         console.log(data);
         socket.broadcast.emit('update', data);
     });
-}
 
+    socket.on('rotate', data => {
+        console.log(data);
+        socket.broadcast.emit('update', data);
+    });
+}
