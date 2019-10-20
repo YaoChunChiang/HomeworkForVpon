@@ -1,21 +1,19 @@
 let express = require('express');
 let app = express();
-let server = app.listen('3000');
+const PORT = '3000';
+let server = app.listen(PORT);
 
 app.use(express.static('public'));
 
 let socket = require('socket.io');
 let io = socket(server);
-io.on('connection', newConnection)
+io.sockets.on('connection', newConnection)
 
 function newConnection(socket){
-    // console.log('new Connection');
-    console.log('new connection ',socket.id);
-    socket.on('clicking', getMsg);
+    console.log('new connection ', socket.id);
+    socket.on('clicking', data => {
+        console.log(data);
+        socket.broadcast.emit('update', data);
+    });
 }
-function getMsg(data){
-    // socket.broadcast.emit('broadcast', 'hello friends!');
-    
-    console.log(data);
-}
-console.log('Running');
+

@@ -1,24 +1,22 @@
 let socket;
 
-function updating(data){
-    console.log(data)
-}
+
 (function(){
     socket = io.connect('http://localhost:3000');
-    socket.on('update', updating)
+    socket.on('update', function(data){
+        console.log(data)
+    }) 
 })()
 
 
 
 
 function init(){
-    document.getElementById('btn').onclick = changeTitle;
-
     function changeTitle(){
         document.getElementById('title').innerHTML = 'You clicked';
         let data = {ccc: 'ccc'};
         socket.emit('clicking', data); 
     }
+    document.getElementById('btn').onclick = changeTitle;
 }
-
 window.addEventListener('load', init)
