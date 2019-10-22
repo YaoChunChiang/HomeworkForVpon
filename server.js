@@ -18,6 +18,6 @@ function newConnection(socket){
 
     socket.on('rotate', data => {
         console.log(data);
-        socket.broadcast.emit('update', data);
+        socket.broadcast.emit('changeDirection', data);
     });
 }

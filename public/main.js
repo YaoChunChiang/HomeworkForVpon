@@ -6,18 +6,30 @@ const domainName = window.location.hostname;
     socket.on('update', function(data){
         console.log(data)
     }) 
+    socket.on('changeDirection', function(direction){
+        let pic = document.getElementById('pic');
+
+        if(direction === 'landscape'){
+            console.log('landscape')
+            pic.style.transform = 'rotate(90deg)'
+        }else if(direction === 'portrait'){
+            console.log('portrait')
+            pic.style.transform = 'rotate(0deg)'
+
+        }
+    }) 
 })()
 
 
 
 
 function init(){
-    function changeTitle(){
-        document.getElementById('title').innerHTML = 'You clicked';
-        let data = {ccc: 'ccc'};
-        socket.emit('clicking', data); 
-    }
-    document.getElementById('btn').onclick = changeTitle;
+    // function changeTitle(){
+    //     document.getElementById('title').innerHTML = 'You clicked';
+    //     let data = {ccc: 'ccc'};
+    //     socket.emit('clicking', data); 
+    // }
+    // document.getElementById('btn').onclick = changeTitle;
 }
 window.addEventListener('load', init);
 
